@@ -1,143 +1,262 @@
-<!doctype html><html lang="en"><head><title>State.io - Conquer the World</title><meta charset="utf-8"><meta name="description" content=""><meta name="format-detection" content="telephone-no"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><script async src="https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-QECKWQYFYH"></script><script>window.GOOGLE_ANALYTICS_KEY = "G-QECKWQYFYH";
-        window.GOOGLE_ANALYTICS_APP_VERSION = "1:231713697317:web:2a8fc653e9c1f65d8719cc";
-        console.log('Google analytics key: ' + window.GOOGLE_ANALYTICS_KEY + '.');
-        console.log('App version: ' + window.GOOGLE_ANALYTICS_APP_VERSION + '.');
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function gtag() {dataLayer.push(arguments);};
-        gtag('js', new Date());</script><style>body, html {
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-            background: black;
-        }
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>State.io - Conquer the World</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="format-detection" content="telephone-no">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <script async src="https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-QECKWQYFYH"></script>
+    <script>
+      window.GOOGLE_ANALYTICS_KEY = "G-QECKWQYFYH";
+      window.GOOGLE_ANALYTICS_APP_VERSION = "1:231713697317:web:2a8fc653e9c1f65d8719cc";
+      console.log('Google analytics key: ' + window.GOOGLE_ANALYTICS_KEY + '.');
+      console.log('App version: ' + window.GOOGLE_ANALYTICS_APP_VERSION + '.');
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        dataLayer.push(arguments);
+      };
+      gtag('js', new Date());
+    </script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+      }
 
-        #game-root {
-            position: absolute;
-            z-index:100;
-        }
+      #game-root {
+        position: absolute;
+        z-index: 100;
+      }
 
-        #game-canvas, #game-root {
-            width: 100%;
-            height: 100%;
-        }
+      #game-canvas,
+      #game-root {
+        width: 100%;
+        height: 100%;
+      }
 
-        .gd__banners_wrapper{
-            width:100%;
-            height:100%;
-            position: absolute;
-            left:0;
-            top:0;
-        }
+      .gd__banners_wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
 
-        .gd-banner{
-            position:absolute;
-            z-index: 1200;
-            pointer-events: auto;
-            margin: auto;
-        }
+      .gd-banner {
+        position: absolute;
+        z-index: 1200;
+        pointer-events: auto;
+        margin: auto;
+      }
 
-        #banner_336x280 {
-            width: 336px;
-            height: 280px;
-        }
+      #banner_336x280 {
+        width: 336px;
+        height: 280px;
+      }
 
-        #banner_300x250 {
-            width: 300px;
-            height: 250px;
-        }
-        
-        #banner_970x250 {
-            width: 970px;
-            height: 250px;
-        }
-        
-        #banner_728x90 {
-            width: 728px;
-            height: 90px;
-        }
-        
-        #banner_120x600 {
-            width: 120px;
-            height: 600px;
-        }
-        
-        #banner_160x600 {
-            width: 160px;
-            height: 600px;
-        }</style><script>window["GD_OPTIONS"] = {
-                "gameId":"1701b2232f8c4f7689394f229bda07d7",
-                "debug": false,
-                "onEvent": function(event) {
-                    var event = new CustomEvent(event.name,{detail:{payload:event}})
-                    window.dispatchEvent(event);
-            }
+      #banner_300x250 {
+        width: 300px;
+        height: 250px;
+      }
+
+      #banner_970x250 {
+        width: 970px;
+        height: 250px;
+      }
+
+      #banner_728x90 {
+        width: 728px;
+        height: 90px;
+      }
+
+      #banner_120x600 {
+        width: 120px;
+        height: 600px;
+      }
+
+      #banner_160x600 {
+        width: 160px;
+        height: 600px;
+      }
+    </style>
+    <script>
+      // Mock GD SDK to allow game to run without ads
+      function getUserId() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      (function(global) {
+        var bus = global.__diffbus || {
+          ready: false,
+          cbc: [],
+          params: undefined
         };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://cdn.jsdelivr.net/gh/dartsc/Game-distribution@refs/heads/main/main.min.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'gamedistribution-jssdk'));</script><script>function gC(n) {
-            let m = document.cookie.match(new RegExp("(?:^|; )" + n.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-            return m ? decodeURIComponent(m[1]) : undefined;
-        }
-
-        function getUserId(){
-            let v = gC("gd1701b2232f8c4f7689394f229bda07d7usr");
-            return v && v !== "anonymous" ? v : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-                return v.toString(16);
-            });
-        }
-
-        (function(b) {
-
-            var _loaded = 0;
-            Object.defineProperty(b, "loaded", {
-                set: function(v) {
-                    _loaded = v;
-                },
-                get: function() {
-                    return _loaded;
-                }
-            });
-            b.onLoaded = function() {
-                b.ready = true;
-                while (b.cbc.length) {
-                    var cb = b.cbc.pop();
-                    cb && cb();
-                }
-            };
-
-        function waitForSDK(){
-            if (typeof gdsdk === "undefined") {
-                setTimeout(waitForSDK, 10);
-            }else{
-               
-                var id=getUserId();
-                if (typeof gtag !== "undefined") {
-
-                                gtag("config", window.GOOGLE_ANALYTICS_KEY, {
-                                    analytics_storage: "denied",
-                                    anonymize_ip: true,
-                                    user_id: id,
-                                    client_id: id,
-                                    app_version: window.GOOGLE_ANALYTICS_APP_VERSION
-                                });
-                                gtag("event", "session_start");
-                }
-
-                b.params = b.params || {};
-                b.params.gdsdk = gdsdk;
-                b.params.guid = id;
-                
-                b.onLoaded();
+        var loadedFlag = 0;
+        Object.defineProperty(bus, "loaded", {
+          set: function(value) {
+            loadedFlag = value;
+          },
+          get: function() {
+            return loadedFlag;
+          }
+        });
+        bus.onLoaded = function() {
+          bus.ready = true;
+          while (bus.cbc.length) {
+            var cb = bus.cbc.pop();
+            if (typeof cb === "function") {
+              cb();
             }
+          }
+        };
+        var playerId = getUserId();
+        if (typeof gtag !== "undefined") {
+          gtag("config", window.GOOGLE_ANALYTICS_KEY, {
+            analytics_storage: "denied",
+            anonymize_ip: true,
+            user_id: playerId,
+            client_id: playerId,
+            app_version: window.GOOGLE_ANALYTICS_APP_VERSION
+          });
+          gtag("event", "session_start");
+        }
+        var gameId = "1701b2232f8c4f7689394f229bda07d7";
+        var resumeHandler = null;
+        var resumeContext = null;
+
+        function dispatchSdkEvent(name, detail) {
+          var payload = detail || {};
+          try {
+            var event = new CustomEvent(name, {
+              detail: payload
+            });
+            global.dispatchEvent(event);
+          } catch (err) {
+            console.warn("Failed to dispatch SDK event", name, err);
+          }
+          if (global.GD_OPTIONS && typeof global.GD_OPTIONS.onEvent === "function") {
+            try {
+              global.GD_OPTIONS.onEvent({
+                name: name,
+                data: payload
+              });
+            } catch (cbErr) {
+              console.warn("GD_OPTIONS.onEvent error", cbErr);
+            }
+          }
         }
 
-        waitForSDK();
-
-        })(window.__diffbus = {ready: false, cbc: [],params:undefined});</script><script defer="defer" src="https://cdn.jsdelivr.net/gh/dartsc/State.io@main/rvvASMiM/1701b2232f8c4f7689394f229bda07d7/main.js"></script><link href="https://cdn.jsdelivr.net/gh/dartsc/State.io@main/rvvASMiM/1701b2232f8c4f7689394f229bda07d7/main.css" rel="stylesheet"></head><body><div id="game-root"><canvas id="game-canvas"></canvas></div></body></html>
+        function triggerResume() {
+          if (typeof resumeHandler === "function") {
+            resumeHandler.call(resumeContext || null);
+          }
+        }
+        var AdType = {
+          Preroll: "preroll",
+          Midroll: "midroll",
+          Interstitial: "interstitial",
+          Rewarded: "rewarded",
+          Display: "display"
+        };
+        var mockGdsdk = {
+          gameId: gameId,
+          AdType: AdType,
+          sdkReady: true,
+          showAd: function(type, options) {
+            console.log("Mock showAd", type, options || {});
+            var adType = type || AdType.Interstitial;
+            if (adType === AdType.Display) {
+              dispatchSdkEvent("DISPLAYAD_AVAILABLE", {
+                containerId: options && options.containerId
+              });
+              return Promise.resolve(true);
+            }
+            dispatchSdkEvent("SDK_GAME_PAUSE", {
+              adType: adType
+            });
+            dispatchSdkEvent("STARTED", {
+              adType: adType
+            });
+            if (adType === AdType.Rewarded) {
+              dispatchSdkEvent("SDK_REWARDED_WATCH_COMPLETE", {
+                adType: adType
+              });
+            } else {
+              dispatchSdkEvent("COMPLETE", {
+                adType: adType
+              });
+            }
+            dispatchSdkEvent("SDK_GAME_START", {
+              adType: adType
+            });
+            setTimeout(triggerResume, 0);
+            return Promise.resolve(true);
+          },
+          preloadAd: function(type) {
+            console.log("Mock preloadAd", type);
+            dispatchSdkEvent("AD_SDK_MANAGER_READY", {
+              adType: type || AdType.Interstitial
+            });
+            return Promise.resolve(true);
+          },
+          showBanner: function(options) {
+            dispatchSdkEvent("DISPLAYAD_AVAILABLE", {
+              containerId: options && options.containerId
+            });
+            return Promise.resolve(true);
+          },
+          hideBanner: function(options) {
+            dispatchSdkEvent("DISPLAYAD_HIDDEN", {
+              containerId: options && options.containerId
+            });
+            return Promise.resolve(true);
+          },
+          openConsole: function() {},
+          customLog: function() {},
+          play: function() {},
+          onResumeGame: function(callback, context) {
+            resumeHandler = callback;
+            resumeContext = context || null;
+          }
+        };
+        global.GD_OPTIONS = global.GD_OPTIONS || {};
+        global.GD_OPTIONS.gameId = global.GD_OPTIONS.gameId || gameId;
+        if (typeof global.GD_OPTIONS.onEvent !== "function") {
+          global.GD_OPTIONS.onEvent = function(event) {
+            console.log("GD_OPTIONS onEvent", event);
+          };
+        }
+        global.GD_OPTIONS.debug = !!global.GD_OPTIONS.debug;
+        global.GD_OPTIONS.advertisementSettings = global.GD_OPTIONS.advertisementSettings || {
+          autoplay: false
+        };
+        global.gdsdk = mockGdsdk;
+        dispatchSdkEvent("SDK_READY", {
+          sdk: "mock"
+        });
+        dispatchSdkEvent("AD_SDK_MANAGER_READY", {
+          adType: AdType.Interstitial
+        });
+        bus.params = bus.params || {};
+        bus.params.gdsdk = mockGdsdk;
+        bus.params.guid = playerId;
+        global.__diffbus = bus;
+        bus.onLoaded();
+      })(window);
+    </script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/gh/dartsc/State.io@main/rvvASMiM/1701b2232f8c4f7689394f229bda07d7/main.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/dartsc/State.io@main/rvvASMiM/1701b2232f8c4f7689394f229bda07d7/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="game-root"><canvas id="game-canvas"></canvas></div>
+  </body>
+</html>
