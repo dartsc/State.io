@@ -1,0 +1,143 @@
+<!doctype html><html lang="en"><head><title>State.io - Conquer the World</title><meta charset="utf-8"><meta name="description" content=""><meta name="format-detection" content="telephone-no"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><script async src="https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-QECKWQYFYH"></script><script>window.GOOGLE_ANALYTICS_KEY = "G-QECKWQYFYH";
+        window.GOOGLE_ANALYTICS_APP_VERSION = "1:231713697317:web:2a8fc653e9c1f65d8719cc";
+        console.log('Google analytics key: ' + window.GOOGLE_ANALYTICS_KEY + '.');
+        console.log('App version: ' + window.GOOGLE_ANALYTICS_APP_VERSION + '.');
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag() {dataLayer.push(arguments);};
+        gtag('js', new Date());</script><style>body, html {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            background: black;
+        }
+
+        #game-root {
+            position: absolute;
+            z-index:100;
+        }
+
+        #game-canvas, #game-root {
+            width: 100%;
+            height: 100%;
+        }
+
+        .gd__banners_wrapper{
+            width:100%;
+            height:100%;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+        .gd-banner{
+            position:absolute;
+            z-index: 1200;
+            pointer-events: auto;
+            margin: auto;
+        }
+
+        #banner_336x280 {
+            width: 336px;
+            height: 280px;
+        }
+
+        #banner_300x250 {
+            width: 300px;
+            height: 250px;
+        }
+        
+        #banner_970x250 {
+            width: 970px;
+            height: 250px;
+        }
+        
+        #banner_728x90 {
+            width: 728px;
+            height: 90px;
+        }
+        
+        #banner_120x600 {
+            width: 120px;
+            height: 600px;
+        }
+        
+        #banner_160x600 {
+            width: 160px;
+            height: 600px;
+        }</style><script>window["GD_OPTIONS"] = {
+                "gameId":"1701b2232f8c4f7689394f229bda07d7",
+                "debug": false,
+                "onEvent": function(event) {
+                    var event = new CustomEvent(event.name,{detail:{payload:event}})
+                    window.dispatchEvent(event);
+            }
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://cdn.jsdelivr.net/gh/dartsc/Game-distribution@refs/heads/main/main.min.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'gamedistribution-jssdk'));</script><script>function gC(n) {
+            let m = document.cookie.match(new RegExp("(?:^|; )" + n.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+            return m ? decodeURIComponent(m[1]) : undefined;
+        }
+
+        function getUserId(){
+            let v = gC("gd1701b2232f8c4f7689394f229bda07d7usr");
+            return v && v !== "anonymous" ? v : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+        }
+
+        (function(b) {
+
+            var _loaded = 0;
+            Object.defineProperty(b, "loaded", {
+                set: function(v) {
+                    _loaded = v;
+                },
+                get: function() {
+                    return _loaded;
+                }
+            });
+            b.onLoaded = function() {
+                b.ready = true;
+                while (b.cbc.length) {
+                    var cb = b.cbc.pop();
+                    cb && cb();
+                }
+            };
+
+        function waitForSDK(){
+            if (typeof gdsdk === "undefined") {
+                setTimeout(waitForSDK, 10);
+            }else{
+               
+                var id=getUserId();
+                if (typeof gtag !== "undefined") {
+
+                                gtag("config", window.GOOGLE_ANALYTICS_KEY, {
+                                    analytics_storage: "denied",
+                                    anonymize_ip: true,
+                                    user_id: id,
+                                    client_id: id,
+                                    app_version: window.GOOGLE_ANALYTICS_APP_VERSION
+                                });
+                                gtag("event", "session_start");
+                }
+
+                b.params = b.params || {};
+                b.params.gdsdk = gdsdk;
+                b.params.guid = id;
+                
+                b.onLoaded();
+            }
+        }
+
+        waitForSDK();
+
+        })(window.__diffbus = {ready: false, cbc: [],params:undefined});</script><script defer="defer" src="main.js"></script><link href="main.css" rel="stylesheet"></head><body><div id="game-root"><canvas id="game-canvas"></canvas></div></body></html>
